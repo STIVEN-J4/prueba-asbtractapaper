@@ -1,0 +1,168 @@
+
+package pruebaabstractapaper1;
+abstract  class Motor
+{
+    private String tipo;
+    private String modelo;
+    private int potencia;
+    private int velocidad_giro;
+    private int par_motor;
+
+    public Motor(String tipo,String modelo ,int potencia,
+            int velocidad_giro, int par_motor)
+    {
+
+        this.tipo=tipo;
+        this.modelo=modelo;
+        this.potencia=potencia;
+        this.velocidad_giro=velocidad_giro;
+        this.par_motor=par_motor;
+    }
+
+    public double IdentificarFalla()
+    {
+        System.out.println("Identificación del numero de fallas en el motor");
+        return 0.0;
+    }
+    public void EmitirFalla()
+    {
+        System.out.println("El tipo de motor que presenta fallas es a "
+                + this.tipo + " ");
+    }
+        public void EmitirFalla1()
+    {
+        System.out.println("El tipo de motor que presenta fallas es a "
+                + this.tipo + " " + this.modelo);
+    }
+    public String toString()
+    {
+        return tipo +" " + modelo +" " + potencia + velocidad_giro + par_motor;
+    }
+    public String getTipo()
+    {
+        return tipo;
+    }
+    public String getModelo()
+    {
+        return modelo;
+    }
+    public void setModelo(String nueva)
+    {
+        modelo=nueva;
+    }
+                public int getPotencia()
+    {
+        return potencia;
+    }
+    public int getVelocidad_Giro()
+    {
+        return velocidad_giro;
+    }
+        public int getPar_Motor()
+    {
+        return par_motor;
+    }
+
+   }
+class NumeroFallaElectronica extends Motor
+{
+    private double numerofallaelectronica;
+    public NumeroFallaElectronica(String tipo,String modelo,
+            int potencia,int velocidad_giro,int par_motor,
+            double numerofallaelectronica)
+    {
+        super(tipo,modelo,potencia,velocidad_giro,par_motor);
+        setNumeroFallaElectronica(numerofallaelectronica);
+    }
+    public void EmitirFalla()
+    {
+        System.out.println("Dentro del Metodo EmitirFalla de la clase NumeroFallaElectronica");
+        System.out.println("El motor de tipo " +getTipo()+ " Presenta "
+                +getNumeroFallaElectronica()+" Fallas Electronicas");
+    }
+        public double getNumeroFallaElectronica()
+        {
+            return numerofallaelectronica;
+        }
+        public void setNumeroFallaElectronica(double nuevo)
+        {
+        if(nuevo>= 0.0)
+            numerofallaelectronica=nuevo;
+    }
+    public double IdentificarFalla()
+    {
+        System.out.println("Fallas encontradas " +getTipo());
+        return numerofallaelectronica/52;
+    }
+
+}
+
+class PropiedadesMotor extends Motor
+{
+    private double propiedadesmotor;
+    public PropiedadesMotor(String tipo,String modelo,
+            int potencia,int velocidad_giro,int par_motor,
+            double propiedadesmotor)
+    {
+        super(tipo,modelo,potencia,velocidad_giro,par_motor);
+        setPropiedadesMotor(propiedadesmotor);
+    }
+    public void EmitirFalla1()
+    {
+        System.out.println("Dentro del Metodo EmitirFalla1 de la clase PropiedadesMotor");
+        System.out.println("El motor de tipo "+getTipo()+" Presenta las siguientes caracteristicas:\n"
+                + "Modelo: "+getModelo()+"\n"
+                + "Potencia: "+getPotencia()+" HP\n"
+                +"Velocidad de giro: "+getVelocidad_Giro()+" RPM\n"
+                + "Par Motor: "+getPar_Motor()+" N.m\n");
+    }
+        public double getPropiedadesMotor()
+        {
+            return propiedadesmotor;
+        }
+        public void setPropiedadesMotor(double nuevo)
+        {
+        if(nuevo>= 0.0)
+            propiedadesmotor=nuevo;
+    }
+    public double IdentificarFalla()
+    {
+        System.out.println("Fallas encontradas " +getTipo());
+        return propiedadesmotor/52;
+    }
+
+}
+
+public class PruebaAbstractaPaper1 {
+    public static void main(String[] args) {
+
+        System.out.println("\n\tUniversidad de las Fuerzas Armadas ESPE EXTENSIÓN Latacunga\n"
+                    + "\nCarrera: Ingeniería Automotriz\n"
+                    + "\nIntegrantes: Julio Jiménez\n"
+                    + "             Lenin Iñacaza\n"
+                    + "\nDocente: Ing.LUIS GUERRA\n"
+                    + "\nMateria: Programación [7450]\n");
+        Motor ObjetoMotor=new NumeroFallaElectronica("Gasolina","",0,0,0,10.0);
+        NumeroFallaElectronica ObjetoNumeroFallaElectronica=new NumeroFallaElectronica("Diesel" ,"Quito",0,0,0,9.0);
+        System.out.println("\nIntegrando las atributos de un Motor: ");
+        System.out.println("\nLlamada a EmitirFalla usando la "
+                + "referencia de la clase Motor *");
+        ObjetoMotor.EmitirFalla();
+        System.out.println("\nLlamada a EmitirFalla usando la "
+                + "referencia de la clase Motor *");
+        ObjetoNumeroFallaElectronica.EmitirFalla();
+
+        Motor ObjetoMotor1=new PropiedadesMotor("Gasolina","4JK1-TC",108,3800,170,0);
+        PropiedadesMotor ObjetoPropiedadesMotor=new PropiedadesMotor("Diesel" ,"4ZD1",190,2600,167,0);
+        System.out.println("\nIntegrando las atributos de un Motor: ");
+        System.out.println("\nLlamada a EmitirFalla1 usando la "
+        + "referencia de la clase Motor *");
+        ObjetoMotor1.EmitirFalla1();
+        System.out.println("\nLlamada a EmitirFalla1 usando la "
+        + "referencia de la clase Motor *");
+        ObjetoPropiedadesMotor.EmitirFalla1();
+
+
+    }
+
+}
